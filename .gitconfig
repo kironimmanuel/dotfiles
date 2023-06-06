@@ -1,0 +1,35 @@
+[core]
+	editor = \"C:\\Users\\AdminControl\\AppData\\Local\\Programs\\Microsoft VS Code\\bin\\code\" --wait
+[user]
+	email = baier.kiron@gmail.com
+	name = Kiron Baier
+[filter "lfs"]
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
+[push]
+    default = current
+[core]
+    editor = code --wait
+    autocrlf = true
+[diff]
+    tool = vscode
+    toll = vscode
+[difftool "vscode"]
+    cmd = "code --wait --diff  $LOCAL $REMOTE"
+[alias]
+    lg = log --pretty=format:'%Cgreen%an%Creset committed %h'
+    unstage = restore --staged .
+    ago = log --all --graph --oneline
+    ao = log --all --oneline
+[color "status"]
+    changed = magenta
+[merge]
+    tool = p4merge
+[mergetool "p4merge"]
+    path = C:\\Program Files\\Perforce\\p4merge
+[mergetool]
+    keepBackup = false
+[suer]
+	email = baier.kiron@gmail.com
