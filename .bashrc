@@ -8,27 +8,54 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
+echo "To view all available commands, use 'commands'"
+
+# Aliases
 alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias dev='cd /c/dev'
 alias gs='git status'
+alias password='bash "c:/dev/bash/password-manager/password-manager.sh"'
 
-print_terminal_banner() {
-   # ANSI color codes
-   GREEN='\033[0;32m'
-   NC='\033[0m' # No color
+# Help
+commands() {
+   echo "Common commands:"
+   echo "  commands                 - View all available commands"
 
-   # Print the ASCII art in green
-   echo -e "${GREEN}"
-   cat <<"EOF"
-_ _ _ ____ _    ____ ____ _  _ ____ 
-| | | |___ |    |    |  | |\/| |___ 
-|_|_| |___ |___ |___ |__| |  | |___ 
-EOF
-   echo -e "${NC}" # Reset the color
+   echo
+   echo "Navigation/Utilities:"
+   echo "  ..                       - Navigate up one directory"
+   echo "  ...                      - Navigate up two directories"
+   echo "  ....                     - Navigate up three directories"
+   echo "  mkcd [filename]          - Make directory and navigate to it"
+   echo "  dev                      - Navigate to dev directory"
+   echo "  filesize [filename]      - Get filesize"
+   echo "  extract [filename]       - Extract file"
+   echo "  genpass                  - Generate password"
+   echo "  gensshkey                - Generate secure SSH key pair"
+   echo "  weather                  - Get weather"
+   echo "  speedtest                - Run speedtest"
+
+   echo
+   echo "Online Services:"
+   echo "  email                    - Open email"
+   echo "  github [profile|repo]    - Open GitHub"
+   echo "  youtube [music]          - Open YouTube"
+
+   echo
+   echo "Security/Management:"
+   echo "  password                 - Open password manager"
+
+   echo
 }
 
-print_terminal_banner
+# Online Services
+google() {
+   searchterm=$(echo $* | tr ' ' '+')
+   curl -s "https://www.google.com/search?q=${searchterm}"
+}
 
-# Apps
 github() {
    case "$1" in
    "profile")
@@ -59,7 +86,11 @@ email() {
    start "mailto:"
 }
 
-# Utils
+# Utilities
+mkcd() {
+   mkdir -p "$@" && cd "$@"
+}
+
 filesize() {
    du -sh "$1"
 }
@@ -86,7 +117,21 @@ extract() {
    fi
 }
 
+genpass() {
+   # openssl rand -base64 16 | tr -d '/+=' | cut -c1-16
+   LC_ALL=C tr -dc 'A-Za-z0-9!@#$%^&*()' </dev/urandom | head -c 16
+   echo
+}
+
+gensshkey() {
+   ssh-keygen -t rsa -b 4096
+}
+
 weather() {
    local city="$1"
    curl -s "wttr.in/$city"
+}
+
+speedtest() {
+   curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python3 -
 }
