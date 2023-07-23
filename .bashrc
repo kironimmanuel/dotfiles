@@ -8,13 +8,15 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
-echo "To view all available commands, use 'commands'"
+echo "To view all available commands, type 'commands'"
 
 # Aliases
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias dev='cd /c/dev'
+alias desk='cd /c/desktop'
+alias config='code ~/.bashrc'
 alias gs='git status'
 alias password='bash "c:/dev/bash/password-manager/password-manager.sh"'
 
@@ -30,12 +32,14 @@ commands() {
    echo "  ....                     - Navigate up three directories"
    echo "  mkcd [filename]          - Make directory and navigate to it"
    echo "  dev                      - Navigate to dev directory"
+   echo "  desk                     - Navigate to desktop"
    echo "  filesize [filename]      - Get filesize"
    echo "  extract [filename]       - Extract file"
    echo "  genpass                  - Generate password"
    echo "  gensshkey                - Generate secure SSH key pair"
    echo "  weather                  - Get weather"
    echo "  speedtest                - Run speedtest"
+   echo "  config                   - Open bashrc file"
 
    echo
    echo "Online Services:"
@@ -135,3 +139,6 @@ weather() {
 speedtest() {
    curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python3 -
 }
+
+# Load Angular CLI autocompletion.
+source <(ng completion script)
