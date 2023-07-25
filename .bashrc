@@ -1,3 +1,5 @@
+# Environment variables
+
 # Theme
 THEME=$HOME/.bash/themes/git_bash_windows_powerline/theme.bash
 if [ -f $THEME ]; then
@@ -16,7 +18,7 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias dev='cd /c/dev'
 alias desk='cd ~/Desktop'
-alias config='code ~/.bashrc'
+alias bashconfig='code ~/.bashrc'
 alias gs='git status'
 alias password='bash "c:/dev/bash/password-manager/password-manager.sh"'
 
@@ -39,7 +41,7 @@ commands() {
    echo "  gensshkey                - Generate secure SSH key pair"
    echo "  weather                  - Get weather"
    echo "  speedtest                - Run speedtest"
-   echo "  config                   - Open bashrc file"
+   echo "  bashconfig               - Open .bashrc file"
 
    echo
    echo "Online Services:"
