@@ -1,7 +1,7 @@
 [core]
 	editor = \"C:\\Users\\AdminControl\\AppData\\Local\\Programs\\Microsoft VS Code\\bin\\code\" --wait
 [user]
-	email = baier.kiron@gmail.com
+	email = 104689690+kironimmanuel@users.noreply.github.com
 	name = Kiron Baier
 [filter "lfs"]
     clean = git-lfs clean -- %f
